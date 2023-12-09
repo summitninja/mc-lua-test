@@ -38,7 +38,7 @@ end
 local r = webRequest("https://api.github.com/repos/summitninja/mc-lua-test/releases/latest")
 
 local release = parseTagName(r)
-
+print("Latest version is: %s",release)
 
 
 -- Check if latest release was gotten
