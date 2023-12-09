@@ -45,8 +45,8 @@ print(string.format("Latest version is: %s",release))
 -- Check if latest release was gotten
 if release ~= nil then
 -- Try to read and compare it to the .version file
-    if fs.exists(".version") then
-        local version = io.open(".version","r"):read()
+    local version = io.open(".version","r"):read()
+    if version ~= nil then
         if version == release then
             print(string.format("Running latest version!\n%s",release))
         else
