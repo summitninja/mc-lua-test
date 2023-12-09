@@ -49,10 +49,11 @@ if release ~= nil then
         local version = io.open(".version","r"):read()
         if version == release then
             print(string.format("Running latest version!\n%s",release))
-            return
+        else
+            updateSystem(release)
         end
-        updateSystem(release)
     else
+        print("'.version' not found... Assuming not installed")
         updateSystem(release)
     end
 else
