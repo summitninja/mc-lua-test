@@ -30,6 +30,7 @@ function updateSystem(version)
     
     file:write(webRequest(string.format("https://raw.githubusercontent.com/summitninja/mc-lua-test/%s/loader.lua",version)))
     open(".version","w"):write(version)
+    print(string.format("Updated system to version %s",version))
 
 end
 
@@ -38,7 +39,7 @@ end
 local r = webRequest("https://api.github.com/repos/summitninja/mc-lua-test/releases/latest")
 
 local release = parseTagName(r)
-print("Latest version is: %s",release)
+print(string.format("Latest version is: %s",release))
 
 
 -- Check if latest release was gotten
@@ -47,10 +48,13 @@ if release ~= nil then
     if fs.exists(".version") then
         local version = io.open(".version","r"):read()
         if version == release then
-            print("Running latest version!\n%s",release)
+            print(string.format("Running latest version!\n%s",release))
             return
         end
         updateSystem(release)
-        print("Updated system to version %s",release)
+    else
+        updateSystem(release)
     end
+else
+    print("There was an issue getting the latest version...")
 end
