@@ -26,10 +26,10 @@ end
 
 function updateSystem(version)
     -- updates system to provided version
-    local file = open("loader.lua","w")
+    local file = io.open("loader.lua","w")
     
     file:write(webRequest(string.format("https://raw.githubusercontent.com/summitninja/mc-lua-test/%s/loader.lua",version)))
-    open(".version","w"):write(version)
+    io.open(".version","w"):write(version)
     print(string.format("Updated system to version %s",version))
 
 end
